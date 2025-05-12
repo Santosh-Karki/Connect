@@ -13,6 +13,21 @@ const userSchema = new mongoose.Schema({
             },
             message: props => `${props.value} is not a valid name!`
         },
+
+
+        email:{
+            type: String, 
+            required: true,
+            unique: true,
+            trim: true,
+        },
+
+        password:{
+            type: String, 
+            required: true,
+            minLength: 6,
+            maxLength: 1024,
+        }
         
 
     }
