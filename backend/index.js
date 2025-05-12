@@ -1,14 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { connDb } from './db/connDb';
-
-dotenv.config();
-
-const PORT = process.env.PORT
+import { connDb } from './db/connDb.js';
 
 const app = express();
+dotenv.config();
 
-app.listen(3001, ()=>{
+
+const PORT = process.env.PORT || 5005
+app.use(express.json());
+
+app.listen(PORT, (req, res)=>{
     connDb();
-    console.log('Server is running on port', PORT);
-})
+    console.log("app is running on port:", PORT)
+  })

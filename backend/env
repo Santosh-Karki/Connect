@@ -1,0 +1,2 @@
+PORT = 5005
+MONGO_URL = mongodb+srv://santoshkarki930:123456santosh@email-auth.dn69fxf.mongodb.net/auth-email?retryWrites=true&w=majority&appName=email-auth
