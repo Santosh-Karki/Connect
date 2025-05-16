@@ -6,7 +6,7 @@ const app = express();
 dotenv.config();
 
 
-const PORT = process.env.PORT || 5005
+const PORT = process.env.PORT || 5001
 app.use(express.json());
 
 app.listen(PORT, (req, res)=>{
