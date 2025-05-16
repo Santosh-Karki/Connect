@@ -5,8 +5,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         type: String, 
         trim: true, 
-        minLength: 3,
-     
         validate: {
             validator: function(v) {
                 return /^[a-zA-Z\s]+$/.test(v);
