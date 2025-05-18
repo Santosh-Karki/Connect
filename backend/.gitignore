@@ -1,0 +1,51 @@
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Node.js and npm/Yarn/pnpm specific
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+build
+dist
+
+# Static asset build output (if different from 'build' or 'dist')
+public/build
+public/dist
+
+# Coverage reports
+coverage
+lcov-report
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# Temporary files and caches
+.tmp
+temp
+tmp
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and debug files
+*.log
+debug.log
