@@ -26,11 +26,22 @@ app.use(
   })
 );
 
-
-const PORT = process.env.PORT || 5001
 app.use(express.json());
+app.use(cookieParser());
 
-app.listen(PORT, ()=>{
-    connDb();
-    console.log("app is running on port:", PORT)
-  })
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/chat", chatRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+  connectDB();
+});
