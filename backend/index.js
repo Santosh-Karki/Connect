@@ -12,8 +12,19 @@ import userRoutes from "./routes/user.route.js";
 import chatRoutes from "./routes/chat.route.js";
 
 import { connectDB } from "./lib/db.js";
+
+
 const app = express();
-dotenv.config();
+const PORT = process.env.PORT;
+
+const __dirname = path.resolve();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // allow frontend to send cookies
+  })
+);
 
 
 const PORT = process.env.PORT || 5001
