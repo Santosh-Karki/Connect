@@ -68,3 +68,7 @@ const Sidebar = () => {
         </div>
       </div>
     </aside>
+
+      );
+};
+export default Sidebar;
