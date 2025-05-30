@@ -34,3 +34,22 @@ const CallPage = () => {
     queryFn: getStreamToken,
     enabled: !!authUser,
   });
+
+  useEffect(() => {
+    const initCall = async () => {
+      if (!tokenData.token || !authUser || !callId) return;
+
+      try {
+        console.log("Initializing Stream video client...");
+
+        const user = {
+          id: authUser._id,
+          name: authUser.fullName,
+          image: authUser.profilePic,
+        };
+
+        const videoClient = new StreamVideoClient({
+          apiKey: STREAM_API_KEY,
+          user,
+          token: tokenData.token,
+        });
