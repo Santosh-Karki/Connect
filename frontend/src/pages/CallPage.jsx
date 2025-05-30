@@ -53,3 +53,24 @@ const CallPage = () => {
           user,
           token: tokenData.token,
         });
+
+        const callInstance = videoClient.call("default", callId);
+
+        await callInstance.join({ create: true });
+
+        console.log("Joined call successfully");
+
+        setClient(videoClient);
+        setCall(callInstance);
+      } catch (error) {
+        console.error("Error joining call:", error);
+        toast.error("Could not join the call. Please try again.");
+      } finally {
+        setIsConnecting(false);
+      }
+    };
+
+    initCall();
+  }, [tokenData, authUser, callId]);
+
+  if (isLoading || isConnecting) return <PageLoader />;
