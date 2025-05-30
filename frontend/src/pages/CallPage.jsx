@@ -20,3 +20,17 @@ import toast from "react-hot-toast";
 import PageLoader from "../components/PageLoader";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
+
+const CallPage = () => {
+  const { id: callId } = useParams();
+  const [client, setClient] = useState(null);
+  const [call, setCall] = useState(null);
+  const [isConnecting, setIsConnecting] = useState(true);
+
+  const { authUser, isLoading } = useAuthUser();
+
+  const { data: tokenData } = useQuery({
+    queryKey: ["streamToken"],
+    queryFn: getStreamToken,
+    enabled: !!authUser,
+  });
