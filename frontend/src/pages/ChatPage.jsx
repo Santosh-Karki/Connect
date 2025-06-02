@@ -36,3 +36,21 @@ const ChatPage = () => {
     queryFn: getStreamToken,
     enabled: !!authUser, // this will run only when authUser is available
   });
+
+  useEffect(() => {
+    const initChat = async () => {
+      if (!tokenData?.token || !authUser) return;
+
+      try {
+        console.log("Initializing stream chat client...");
+
+        const client = StreamChat.getInstance(STREAM_API_KEY);
+
+        await client.connectUser(
+          {
+            id: authUser._id,
+            name: authUser.fullName,
+            image: authUser.profilePic,
+          },
+          tokenData.token
+        );
