@@ -4,7 +4,6 @@ import useAuthUser from "../hooks/useAuthUser";
 import { useQuery } from "@tanstack/react-query";
 import { getStreamToken } from "../lib/api";
 
-
 import {
   Channel,
   ChannelHeader,
@@ -55,6 +54,7 @@ const ChatPage = () => {
           tokenData.token
         );
 
+        //
         const channelId = [authUser._id, targetUserId].sort().join("-");
 
         // you and me
@@ -91,3 +91,25 @@ const ChatPage = () => {
       toast.success("Video call link sent successfully!");
     }
   };
+
+  if (loading || !chatClient || !channel) return <ChatLoader />;
+
+  return (
+    <div className="h-[93vh]">
+      <Chat client={chatClient}>
+        <Channel channel={channel}>
+          <div className="w-full relative">
+            <CallButton handleVideoCall={handleVideoCall} />
+            <Window>
+              <ChannelHeader />
+              <MessageList />
+              <MessageInput focus />
+            </Window>
+          </div>
+          <Thread />
+        </Channel>
+      </Chat>
+    </div>
+  );
+};
+export default ChatPage;
