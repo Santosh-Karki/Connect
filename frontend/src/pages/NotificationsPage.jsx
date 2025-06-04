@@ -50,3 +50,20 @@ const NotificationsPage = () => {
       queryClient.invalidateQueries({ queryKey: ["friends"] });
     },
   });
+
+
+  const NotificationsPage = () => {
+  const queryClient = useQueryClient();
+
+  const { data: friendRequests, isLoading } = useQuery({
+    queryKey: ["friendRequests"],
+    queryFn: getFriendRequests,
+  });
+
+  const { mutate: acceptRequestMutation, isPending } = useMutation({
+    mutationFn: acceptFriendRequest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["friendRequests"] });
+      queryClient.invalidateQueries({ queryKey: ["friends"] });
+    },
+  });
